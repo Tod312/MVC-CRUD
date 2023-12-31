@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User page</title>
+</head>
+<body>
+	<p>Input new value</p>
+	<form th:action ="@{/update}" th:method = "patch" th:object = "${user}">
+		<input type="hidden" th:field= "${user.id}" value="${user.id}" />
+		<br/>
+		<label>Input name</label>
+		<input type="text" th:field= "${user.name}" th:value = "${user.name}"/>
+		<div style="color:red"th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</div>
+		<br/>
+		<label>Input birthday</label>
+		<input type="date" th:field= "${user.birthday}" th:value = "${user.birthday}"/>
+		<div style="color:red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Invalid birthday</div>
+		<br/>
+		<button type="submit">Update user</button>
+	</form>
+</body>
+</html>
